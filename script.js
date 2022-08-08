@@ -16,8 +16,10 @@ function startGame(data) {
         antwort.addEventListener('click', checkAnswer);
     });
 
+    document.querySelector('#payout').addEventListener('click', payout);
+
     function checkAnswer(event) {
-        let clickedAnswer = event.srcElement.innerHTML.substr(0, 1);
+        let clickedAnswer = event.srcElement.id.substr(7,7);
         if (clickedAnswer == answer) {
             console.log('Ok');
             let currentScoreElement = scores[currentScoreNumber];
@@ -32,6 +34,7 @@ function startGame(data) {
             
             if (currentScoreElement.classList.contains('limit')) {
                 limit = score;
+                scores.forEach(element => element.classList.remove('active'));
                 currentScoreElement.classList.add('active');
                 console.log('limit reached');
             }
@@ -46,8 +49,10 @@ function startGame(data) {
         } else {
             if (limit !== "") {
                 alert("Score: " + limit);
+                resetScores();
             } else {
                 alert('Game Over!');
+                resetScores();
             }
         }
     }
@@ -65,6 +70,23 @@ function startGame(data) {
         console.log(answer);
 
         return answer;
+    }
+
+    function payout() {
+        if (score !== "") {
+            alert("Score: " + score);
+            resetScores();
+        } else {
+            alert('Game Over!');
+            resetScores();
+        }
+    }
+
+    function resetScores() {
+        limit = "";
+        score = "";
+        currentScoreNumber = 0;
+        scores.forEach(el => el.classList.remove('active'));
     }
 
 }

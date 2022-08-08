@@ -1,12 +1,23 @@
+:root {
+    --black: #363f53;
+    --white: #fff;
+    --gray: #babec7;
+    --background: #f8f8f8;
+    --orange: #fca82a;
+    --violet: #8b80b6;
+}
+
 body {
-    background: rgb(73, 73, 170);
-    font-family: 'Roboto Slab', serif;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: var(--black);
+    background-color: var(--background);
 }
 
 #content {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    flex-direction: column;
 }
 
 .funda {
@@ -15,50 +26,86 @@ body {
     align-items: center;
 }
 
-.scoreList {
-    border: 2px solid white;
-    width: 10%;
-    height: 52%;
-    text-align: center;
-    color: white;
-}
-
-.scoreList div.active {
-    border: 1px solid orange;
+.frage {
+    font-size: 22px;
+    width: 290px;
+    margin: 20px;
 }
 
 .antworten {
     display: flex;
+    flex-direction: column;
 }
 
-.antwort {
-    padding: 20%;
-    margin: 0px 15px 15px 15px;
-    border: 1px solid white;
-    border-radius: 25px;
-    padding: 20px;
-    color: white;
+.antwort, .finish {
+    background-color: var(--white);
+    border-radius: 3px;
+    height: 70px;
+    width: 270px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    overflow: hidden;
 }
 
-#frage {
-    text-align: center;
-    color: white;
-    border: 1px solid white;
-    margin-bottom: 5%;
-    padding: 10%;
-    border-radius: 20px;
-    width: 400px;
-    height: 100px;
+.antwort.active, .finish {
+    background-color: var(--violet);
+    color: var(--white);
+    box-shadow: 5px 5px 10px 0px var(--gray);
+}
+
+.scoreTable {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.score {
+    color: var(--orange);
+    font-weight: 700;
+    padding: 10px;
+    margin: 0;
+}
+
+.scoreList {
+    padding: 5px;
+}
+
+.score, .scoreList {
+    width: 290px;
+}
+
+.scoreList div {
+    border-radius: 3px;
+    padding: 5px;
+    background-color: var(--white);  
+    margin: 3px auto;  
+}
+
+.scoreList div.active {
+    border: 1px solid var(--orange);
+}
+
+.scoreList .limit {
+    background-color: var(--orange);
+}
+
+.scoreList .limit.active {
+    background-color: var(--violet);
+    border: none;
+}
+
+.finish {
+    margin: 20px auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
 }
 
-.limit {
-    background-color: rgba(255, 166, 0, 0.637);
-}
-
-.limit.active {
-    
-    background-color: green;
+@media (min-width: 640px) {
+    #content {
+        flex-direction: row;
+    }
 }
